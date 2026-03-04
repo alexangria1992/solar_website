@@ -1,0 +1,421 @@
+/* Global Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+@import url("https://www.google.com/search?q=https://fonts.googleapis.com/css2%3Ffamily%3DPlus%2BJakarta%2BSans:ital,wght%400,200..800%3B1,200..800%26family%3DMontserrat:ital,wght%400,100..900%3B1,100..900%26family%3DPlayfair%2BDisplay:ital,wght%400,400..900%3B1,400..900%26family%3DPrata%26family%3DInter%26family%3DBebas%2BNeue%26family%3DPoppins:ital,wght%400,100%3B0,200%3B0,300%3B0,400%3B0,500%3B0,600%3B0,700%3B0,800%3B0,900%3B1,100%3B1,200%3B1,300%3B1,400%3B1,500%3B1,600%3B1,700%3B1,800%3B1,900%26display%3Dswap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+
+/* Custom Fonts */
+
+@font-face {
+  font-family: "helvetica";
+  src: url(/fonts/Helvetica.ttf);
+}
+@font-face {
+  font-family: "space";
+  src: url(/fonts/SpaceGrotesk.ttf);
+}
+
+.helvetica-font {
+  font-family: "helvetica", sans-serif !important;
+}
+
+.space-font {
+  font-family: "space", sans-serif !important;
+}
+
+/* Google Fonts */
+* {
+  font-family: "helvetica", "Plus Jakarta Sans", "inter", "poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "space";
+}
+
+.playfair-display {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  /* font-style: normal; */
+}
+
+.cookie-font {
+  font-family: "Cookie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a.active hr {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  -webkit-scrollbar: none;
+}
+
+.color {
+  background-color: #ffebf5;
+  border-color: #c586a5;
+  color: #cc1379;
+}
+
+/* ---------- THEME VARIABLES (replaces @theme) ---------- */
+:root {
+  --color-prime-accent: #dfff3b;
+  --color-prime-white: #fff4e9;
+  --color-prime-blue: #1b6e9d;
+  --color-prime-dark: #121212;
+  --color-sec-dark: #0b0b0b;
+
+  --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);
+
+  /* for marquee pause control */
+  --marquee-play-state: running;
+}
+
+/* Optional “dark mode” class approach (replaces @variant dark) */
+.dark,
+.dark * {
+  /* you can set shared dark overrides here if you want */
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-1040%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 150s linear infinite;
+  animation-play-state: var(--marquee-play-state, running);
+}
+
+/* Wiggle (replaces --animate-wiggle) */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+.animate-wiggle {
+  animation: wiggle 2s ease-out infinite;
+}
+
+/* Border color animation (replaces --animate-border) */
+@keyframes border {
+  0% {
+    border-color: rgb(56, 189, 248);
+  }
+  50% {
+    border-color: rgb(236, 72, 153);
+  }
+  75% {
+    border-color: #adfe02;
+  }
+  100% {
+    border-color: rgb(56, 189, 248);
+  }
+}
+.animate-border {
+  animation: border 5s linear infinite;
+}
+
+/* Scroll (replaces --animate-scroll) */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+/* ---------- MISC ---------- */
+.color {
+  background-color: #ffebf5;
+  border-color: #c586a5;
+  color: #cc1379;
+}
+
+/* ---------- “UTILITIES / COMPONENTS” (replaces @utility + @layer + @apply) ---------- */
+
+/* centered-row: flex + align center */
+.centered-row {
+  display: flex;
+  align-items: center;
+}
+
+/* mirror-x */
+.mirror-x {
+  transform: scaleX(-1);
+}
+
+/* btn-hover: hover:bg-transparent hover:border hover:border-zinc-600 hover:transition-all */
+.btn-hover:hover {
+  background: transparent;
+  border: 1px solid rgb(82, 82, 91); /* zinc-600 */
+  transition: all 0.2s ease;
+}
+
+/* heading-2: text-6xl lg:text-9xl uppercase leading-tight mb-12 */
+.heading-2 {
+  font-size: 3.75rem; /* ~text-6xl */
+  line-height: 1.1; /* leading-tight-ish */
+  text-transform: uppercase;
+  margin-bottom: 3rem; /* mb-12 */
+}
+@media (min-width: 1024px) {
+  .heading-2 {
+    font-size: 8rem; /* ~text-9xl */
+  }
+}
+
+/* col */
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* transition2: transition-all duration-300 cursor-pointer ease-out */
+.transition2 {
+  transition: all 300ms ease-out;
+  cursor: pointer;
+}
+
+/* glass: bg-[#0A0A0A]/80 border border-white/10 */
+.glass {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* card-hover: hover:-translate-y-2 transition-all duration-300 cursor-pointer ease-in */
+.card-hover {
+  transition: all 300ms ease-in;
+  cursor: pointer;
+}
+.card-hover:hover {
+  transform: translateY(-0.5rem);
+}
+
+/* black-text: text-zinc-500/90 */
+.black-text {
+  color: rgba(113, 113, 122, 0.9); /* zinc-500 */
+}
+
+/* line-bottom: border-b border-b-zinc-500/40 */
+.line-bottom {
+  border-bottom: 1px solid rgba(113, 113, 122, 0.4);
+}
+
+/* center-item: centered-row justify-center */
+.center-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* grad-text: text-transparent bg-gradient-to-tr bg-clip-text */
+.grad-text {
+  color: transparent;
+  background-image: linear-gradient(
+    to top right,
+    var(--grad-from, #fff),
+    var(--grad-to, #000)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* grad1: from-indigo-100 to-indigo-400 */
+.grad1 {
+  color: transparent;
+  background-image: linear-gradient(to top right, #e0e7ff, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* link-hover: hover:font-bold hover:text-zinc-800 transition-all duration-300 ease-in-out hover:-translate-y-1 */
+.link-hover {
+  transition: all 300ms ease-in-out;
+  display: inline-block; /* needed so translate works nicely */
+}
+.link-hover:hover {
+  font-weight: 700;
+  color: rgb(39, 39, 42); /* zinc-800 */
+  transform: translateY(-0.25rem);
+}
+
+/* ---------- SPECIAL CASE MEDIA QUERIES ---------- */
+
+@media (max-width: 380px) {
+  .test {
+    font-size: 75px;
+  }
+
+  .something {
+    font-size: 16px;
+    width: 340px;
+    position: absolute;
+    bottom: -380px;
+    left: 5px;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-img {
+    width: 1024px;
+  }
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, fill, stroke;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out;
+}
+
+.website_container {
+  color: #27272a;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.navigation {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 40;
+  padding-inline: 1.5rem;
+  padding-block: 24px;
+  /* padding: 24px 24px; */
+  /* backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);  */
+}
+
+.nav_content {
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logo_wrapper {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.logo_text {
+  margin-left: 4px;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+.copyright {
+  font-size: 12px;
+  line-height: 1.3;
+  margin-left: 4px;
+}
+
+.mobile_button {
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile_button i {
+  font-size: 30px;
+}
+.actions_container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 760px) {
+  .mobile_button {
+    display: none;
+  }
+}
+
+.container {
+  /* width: 100%; */
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navigation {
+    padding-left: 48px; /* md:px-12 */
+    padding-right: 48px;
+  }
+}

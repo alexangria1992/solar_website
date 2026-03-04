@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="website_container">
+      <nav class="navigation transition-colors">
+        <div class="nav_content container">
+          <!-- Logo -->
+
+          <div class="logo_wrapper">
+            <i class="fa-solid fa-solar-panel"></i>
+            <span class="logo_text">Georeno</span>
+            <sup class="copyright">©</sup>
+          </div>
+          <div class="actions_container">
+            <button
+              id="mobileMenu"
+              class="mobile_button"
+              type="button"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Fullscreen mobile menu -->
+      <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+        <!-- background watermark -->
+        <div class="mobile-menu__ring"></div>
+        <div class="mobile-menu_top">
+          <span class="mobile-menu__label">NAVIGATION</span>
+          <nav class="mobile-menu__links">
+            <a href="" class="mobile-menu__link">Home</a>
+            <a href="" class="mobile-menu__link">About</a>
+            <a href="" class="mobile-menu__link">Technology</a>
+            <a href="" class="mobile-menu__link">Specs</a>
+            <a href="" class="mobile-menu__link">Reviews</a>
+          </nav>
+        </div>
+        <div class="mobile-menu__bottom">
+          <div class="mobile-menu__grid">
+            <div class="mobile-menu__info">
+              <span class="mobile-menu__infoLabel">Contact</span>
+              <p class="mobile-menu__infoText">hello@goreno.tech</p>
+            </div>
+            <div class="mobile-menu__info">
+              <span class="mobile-menu__infoLabel">OFFICE</span>
+              <p class="mobile-menu__infoText">Zurich, CH</p>
+            </div>
+            <button class="mobile-menu__cta" type="button">
+              START CONFIGURATION <span class="mobile-menu__arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/script.js" defer></script>
+  </body>
+</html>
