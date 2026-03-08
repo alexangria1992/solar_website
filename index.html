@@ -23,12 +23,13 @@
           </div>
           <div class="actions_container">
             <button
-              id="mobileMenu"
+              id="mobileButton"
               class="mobile_button"
               type="button"
               aria-expanded="false"
             >
-              <i class="fa-solid fa-bars"></i>
+              <i class="fa-solid fa-bars icon-bars"></i>
+              <i class="fa-solid fa-xmark icon-x"></i>
             </button>
           </div>
         </div>
@@ -36,6 +37,15 @@
 
       <!-- Fullscreen mobile menu -->
       <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+        <!-- close button on mobile menu -->
+        <button
+          class="mobile-menu__close"
+          id="menuClose"
+          type="button"
+          aria-label="Close menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
         <!-- background watermark -->
         <div class="mobile-menu__ring"></div>
         <div class="mobile-menu_top">
@@ -58,10 +68,11 @@
               <span class="mobile-menu__infoLabel">OFFICE</span>
               <p class="mobile-menu__infoText">Zurich, CH</p>
             </div>
-            <button class="mobile-menu__cta" type="button">
-              START CONFIGURATION <span class="mobile-menu__arrow">→</span>
-            </button>
           </div>
+          <button class="mobile-menu__cta" type="button">
+            START CONFIGURATION
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </div>
