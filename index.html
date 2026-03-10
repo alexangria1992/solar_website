@@ -11,6 +11,8 @@
     />
   </head>
   <body>
+    <!-- SERVICES SECTION -->
+
     <div class="website_container">
       <nav class="navigation transition-colors">
         <div class="nav_content container">
@@ -36,7 +38,7 @@
       </nav>
 
       <!-- Fullscreen mobile menu -->
-      <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+      <div id="mobileMenu" class="mobile-menu" aria-hidden="true" inert>
         <!-- close button on mobile menu -->
         <button
           class="mobile-menu__close"
@@ -109,7 +111,7 @@
               </div>
               <!-- right description -->
               <div class="hero-section__right-description-wrapper">
-                <p class="hero-section__right-description-text">
+                <p class="hero-section__right-description-text helvetica-font">
                   Generate your own clean energy from the sun for free with
                   solar. Add Powerwall to store your energy for use anytime.
                 </p>
@@ -118,6 +120,112 @@
           </div>
           <!-- Background centerline - Hidden on small mobile to reduce clutter -->
           <!-- <div class="background-centerline"></div> -->
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="about-section container">
+          <div class="about-section__wrapper">
+            <div class="about-section__icons">
+              <i class="fa-solid fa-sun about-section-sun-icon pulse"></i>
+              <span class="about-section__text"
+                >Save With <br />
+                Solar Over Time</span
+              >
+            </div>
+            <h2 class="about-section__heading">
+              Generate your own clean energy from the sun for free with solar.
+              <span class="about-section__subheading">
+                &nbsp;Add Powerwall to store your energy for use anytime you
+                need it.
+              </span>
+            </h2>
+          </div>
+
+          <!-- Grid Content -->
+          <div class="about-section__grid">
+            <div class="about-section__grid-card">
+              <div class="about-section__grid-content-wrapper">
+                <i class="fa-solid fa-bolt bolt-icon"></i>
+                <div class="about-section__avatars" id="avatarGroup"></div>
+              </div>
+              <div class="about-section__card-text-wrapper">
+                <h3 class="about-section__card-text">
+                  Design your solar system&nbsp;
+                  <span class="about-section__card-text-dark transition-colors"
+                    >or schedule a virtual consultation with a Goreno.
+                  </span>
+                </h3>
+              </div>
+
+              <div class="about-section__toggle-wrapper">
+                <div class="about-section__toggle-wrap">
+                  <div class="about-section__toggle"></div>
+                </div>
+                <span class="about-section__toggle-text"> AI Energy Mode </span>
+              </div>
+              <!-- Glow toggle -->
+              <div class="glow-toggle transition-colors"></div>
+            </div>
+            <!-- CARD 2 -->
+            <div class="about-section__solar-energy-container">
+              <div class="about-section__solar-energy-wrapper">
+                <img
+                  src="/assets/images/card.jpg"
+                  class="about-section__solar-energy-image"
+                  alt=""
+                />
+                <div class="about-section__image-detail"></div>
+              </div>
+              <button class="about-section__button">Solar Energy</button>
+            </div>
+            <!-- CARD 3 -->
+            <div class="about-section__stats-card-container">
+              <div class="about-section__stats-card-wrapper">
+                <div>
+                  <span class="about-section__stat" id="chartValue">72% </span>
+                  <p class="about-section__metrics">Consumed Energy</p>
+                </div>
+                <div class="about-section__live-metrics-badge">
+                  <div class="about-section__live-metrics-glow pulse"></div>
+                  Live Metrics
+                </div>
+              </div>
+              <div class="about-section__chart-bars" id="chartBars">
+                <!-- <div class="about-section__chart-bar-column">
+                  <div class="about-section__chart-bar"></div>
+                </div> -->
+              </div>
+              <div class="about-section__chart-card-times">
+                <span>00:00</span>
+                <span>02:00</span>
+                <span>04:00</span>
+              </div>
+            </div>
+          </div>
+          <!-- footer markers -->
+          <div class="about-section__footer-container">
+            <div class="about-section__footer-wrapper">
+              <span class="about-section__footer-text"></span>24/7 Monitoring
+            </div>
+            <div class="about-section__footer-wrapper">
+              <span class="about-section__footer-text"> </span>Maximum Control
+            </div>
+          </div>
+        </section>
+        <section class="services-section">
+          <div class="services-section__container">
+            <div class="services-section__badge">Getting to Power On</div>
+            <h2 class="services-section__heading">
+              With half a million solar installations to date, Goreno takes care
+              of all the details for you, from order to power on.&nbsp;
+
+              <span class="services-section__heading-muted">
+                Schedule a virtual consultation with a Goreno Advisor to learn
+                more.
+              </span>
+            </h2>
+            <div class="services-section__grid" id="servicesGrid"></div>
+          </div>
         </section>
       </main>
     </div>
