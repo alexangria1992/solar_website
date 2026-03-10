@@ -3,9 +3,13 @@ const menu = document.getElementById("mobileMenu");
 const btn = document.getElementById("mobileButton");
 const closeBtn = document.getElementById("menuClose");
 const avatarGroup = document.getElementById("avatarGroup");
+const specsLeft = document.getElementById("specsLeft");
+const specsRight = document.getElementById("specsRight");
+const guideCircles = document.getElementById("guideCircles");
 //Chart Elements
 const chartBars = document.getElementById("chartBars");
 const chartValue = document.getElementById("chartValue");
+
 let hoveredBar = null;
 //Services Element
 const servicesGrid = document.getElementById("servicesGrid");
@@ -29,6 +33,29 @@ const services = [
     image: "/assets/images/solar-3.jpg",
     icon: "bell",
     isComingSoon: true,
+  },
+];
+// specs data
+const specs = [
+  {
+    icon: "shield",
+    title: "Warranty",
+    value: "10-Year Protection",
+  },
+  {
+    icon: "sun",
+    title: "Operation",
+    value: "24/7 Autonomy",
+  },
+  {
+    icon: "zap",
+    title: "Switch",
+    value: "<10ms Seamless",
+  },
+  {
+    icon: "plus",
+    title: "System",
+    value: "Modular Expansion",
   },
 ];
 
@@ -198,5 +225,75 @@ function renderServices() {
   });
 }
 
+function getSpecIconClass(iconName) {
+  switch (iconName) {
+    case "shield":
+      return "fa-solid fa-shield";
+    case "sun":
+      return "fa-solid fa-sun";
+    case "zap":
+      return "fa-solid fa-bolt";
+    case "plus":
+      return "fa-solid fa-plus";
+    default:
+      return "fa-solid fa-circle";
+  }
+}
+
+function createSpecItem(spec) {
+  const item = document.createElement("div");
+  item.className = "product-showcase__spec-item";
+
+  const topRow = document.createElement("div");
+  topRow.className = "product-showcase__spec-top";
+
+  const icon = document.createElement("i");
+  icon.className = getSpecIconClass(spec.icon);
+
+  const title = document.createElement("span");
+  title.className = "product-showcase__spec-title";
+  title.textContent = spec.title;
+
+  topRow.appendChild(icon);
+  topRow.appendChild(title);
+
+  const value = document.createElement("div");
+  value.className = "product-showcase__spec-value";
+  value.textContent = spec.value;
+
+  const line = document.createElement("div");
+  line.className = "product-showcase__spec-line";
+
+  item.appendChild(topRow);
+  item.appendChild(value);
+  item.appendChild(line);
+
+  return item;
+}
+
+function renderSpecs() {
+  specsLeft.innerHTML = "";
+  specsRight.innerHTML = "";
+
+  specs.slice(0, 2).forEach((spec) => {
+    specsLeft.appendChild(createSpecItem(spec));
+  });
+
+  specs.slice(2, 4).forEach((spec) => {
+    specsRight.appendChild(createSpecItem(spec));
+  });
+}
+
+function renderGuideCircles() {
+  guideCircles.innerHTML = "";
+  [1, 2, 3].forEach((i) => {
+    const circle = document.createElement("div");
+    circle.className = "product-showcase__guide-circle";
+    circle.textContent = `0${i}`;
+    guideCircles.appendChild(circle);
+  });
+}
+renderGuideCircles();
+renderSpecs();
 renderChartBars();
 renderServices();
