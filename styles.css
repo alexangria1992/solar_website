@@ -768,10 +768,9 @@ a.active hr {
 
 .hero-section__copyright {
   font-size: 18px;
-  line-height: 0.75;
+  line-height: 1;
   position: absolute;
   top: -0.5em;
-  right: 5em;
 }
 
 .hero-section__bottom-content-wrapper {
@@ -841,6 +840,54 @@ a.active hr {
   font-size: 12px;
   line-height: 1.6;
   color: #e7e2e4;
+}
+
+@media (min-width: 768px) {
+  .hero-section__main-content {
+    padding-inline: 48px;
+  }
+
+  .hero-section__main-content-heading {
+    font-size: 24vw;
+  }
+
+  .hero-section__copyright {
+    font-size: 24px;
+    line-height: 1.3;
+    top: 20px;
+  }
+
+  .hero-section__bottom-content-wrapper {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 0;
+  }
+
+  .hero-section__right-description-wrapper {
+    max-width: 384px;
+    text-align: right;
+  }
+
+  .hero-section__right-description-text {
+    font-size: 14px;
+    line-height: 1.42;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section__copyright {
+    top: 40px;
+    right: 160px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .hero-section__copyright {
+    font-size: 30px;
+    line-height: 1.2;
+    top: 80px;
+    right: 0rem;
+  }
 }
 
 /* ABOUT SECTION */
