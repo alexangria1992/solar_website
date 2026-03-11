@@ -9,7 +9,13 @@ const guideCircles = document.getElementById("guideCircles");
 //Chart Elements
 const chartBars = document.getElementById("chartBars");
 const chartValue = document.getElementById("chartValue");
-
+// More Section
+const previewImages = [2, 3];
+const sliderDotCount = 4;
+const activeDotIndex = 2;
+const previewGrid = document.getElementById("previewGrid");
+const moreSpecsGrid = document.getElementById("moreSpecsGrid");
+const sliderDots = document.getElementById("sliderDots");
 let hoveredBar = null;
 //Services Element
 const servicesGrid = document.getElementById("servicesGrid");
@@ -57,6 +63,12 @@ const specs = [
     title: "System",
     value: "Modular Expansion",
   },
+];
+
+const moreSpecs = [
+  { label: "Inverter Dimensions", value: '74.4" x 41.2" x 1.57"' },
+  { label: "Inverter Dimensions", value: '26" x 16" x 6"' },
+  { label: "Materials", value: '26" x 16" x 6"' },
 ];
 
 btn.addEventListener("click", () => {
@@ -293,6 +305,64 @@ function renderGuideCircles() {
     guideCircles.appendChild(circle);
   });
 }
+
+// MORE SECTION
+function renderPreviewimages() {
+  previewGrid.innerHTML = "";
+
+  previewImages.forEach((i) => {
+    const card = document.createElement("div");
+    card.className = "more-section__preview-card";
+
+    const img = document.createElement("img");
+    img.className = "more-section__preview-image";
+    img.src = `/assets/images/solar-${i}.jpg`;
+
+    card.appendChild(img);
+    previewGrid.appendChild(card);
+  });
+}
+
+function createMoreSpecItem(spec) {
+  const item = document.createElement("div");
+  item.className = "more-section__spec-item";
+
+  const label = document.createElement("div");
+  label.className = "more-section__spec-label";
+  label.innerHTML = `<span>◆</span> ${spec.label}`;
+
+  const value = document.createElement("div");
+  value.className = "more-section__spec-value";
+  value.textContent = spec.value;
+
+  item.appendChild(label);
+  item.appendChild(value);
+
+  return item;
+}
+
+function renderMoreSpecs() {
+  moreSpecsGrid.innerHTML = "";
+
+  moreSpecs.forEach((spec) => {
+    moreSpecsGrid.appendChild(createMoreSpecItem(spec));
+  });
+}
+
+function renderSliderDots() {
+  sliderDots.innerHTML = "";
+  [1, 2, 3, 4].forEach((dot, i) => {
+    const dotEl = document.createElement("div");
+    dotEl.className = "more-section__slider-dot";
+    if (i === activeDotIndex) {
+      dotEl.classList.add("more-section__slider-dot--active");
+    }
+    sliderDots.appendChild(dotEl);
+  });
+}
+renderPreviewimages();
+renderMoreSpecs();
+renderSliderDots();
 renderGuideCircles();
 renderSpecs();
 renderChartBars();
