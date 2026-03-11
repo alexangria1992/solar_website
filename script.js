@@ -120,9 +120,13 @@ const socialLinks = [
   { name: "Youtube", iconClass: "fa-brands fa-youtube" },
 ];
 
+const nav = document.querySelector(".navigation");
+
 const menu = document.getElementById("mobileMenu");
 const btn = document.getElementById("mobileButton");
 const closeBtn = document.getElementById("menuClose");
+const mobileLinks = document.querySelectorAll(".mobile-menu__link");
+
 const avatarGroup = document.getElementById("avatarGroup");
 const specsLeft = document.getElementById("specsLeft");
 const specsRight = document.getElementById("specsRight");
@@ -150,41 +154,66 @@ const thirdColumn = testimonials.slice(6, 9);
 let hoveredBar = null;
 //Services Element
 const servicesGrid = document.getElementById("servicesGrid");
-// SERVICES DATA
 
-btn.addEventListener("click", () => {
-  // 1) Toggle OPEN state on the BUTTON first (so icon swaps)
-  const open = btn.classList.toggle("is-open");
-  // 2) Update aria
+function openMenu() {
+  btn.classList.add("is-open");
+  menu.classList.add("is-open");
+  btn.setAttribute("aria-expanded", "true");
+  menu.setAttribute("aria-hidden", "false");
+  menu.removeAttribute("inert");
+  closeBtn.focus();
+}
 
-  btn.setAttribute("aria-expanded", String(open));
-  menu.setAttribute("aria-hidden", String(!open));
-  // 3) Then slide the panel in on the next paint frame
-  if (open) {
-    menu.style.transition = "transform 600ms cubic-bezier(0.76, 0, 0.24, 1)";
-
-    requestAnimationFrame(() => {
-      menu.classList.toggle("is-open", open);
-
-      closeBtn.focus();
-    });
-  } else {
-    menu.style.transition = "none";
-    menu.classList.remove("is-open");
-    btn.focus();
-  }
-});
-closeBtn.addEventListener("click", () => {
+function closeMenu() {
   btn.classList.remove("is-open");
   menu.classList.remove("is-open");
   btn.setAttribute("aria-expanded", "false");
   menu.setAttribute("aria-hidden", "true");
+  menu.setAttribute("inert", "");
+
   btn.focus();
+}
+btn.addEventListener("click", () => {
+  // 1) Toggle OPEN state on the BUTTON first (so icon swaps)
+  const isOpen = btn.classList.contains("is-open");
+
+  // 3) Then slide the panel in on the next paint frame
+  if (isOpen) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+});
+closeBtn.addEventListener("click", closeMenu);
+
+mobileLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    closeMenu();
+  });
 });
 
-//avatars
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && menu.classList.contains("is-open")) {
+    closeMenu();
+  }
+});
 
-[1, 2, 3].forEach((i) => {
+function updateNavTheme() {
+  const scrollY = window.scrollY;
+  const footerThreshold = document.documentElement.scrollHeight - 1000;
+
+  const isDarkSection = scrollY > 700 && scrollY < footerThreshold;
+  nav.classList.toggle("is-dark-section", isDarkSection);
+}
+
+window.addEventListener("scroll", updateNavTheme);
+window.addEventListener("load", updateNavTheme);
+
+[
+  //avatars
+
+  (1, 2, 3),
+].forEach((i) => {
   {
     const avatar = document.createElement("div");
     avatar.className = "avatar";

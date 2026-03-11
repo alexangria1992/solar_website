@@ -331,6 +331,15 @@ a.active hr {
   /* padding: 24px 24px; */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  color: white;
+
+  transition:
+    color 500ms ease,
+    background-color 500ms ease;
+}
+
+.navigation.is-dark-section {
+  color: #09090b;
 }
 
 .nav_content {
@@ -365,6 +374,7 @@ a.active hr {
   background: none;
   border: none;
   cursor: pointer;
+  color: inherit;
 }
 
 .icon-x {
@@ -390,9 +400,7 @@ a.active hr {
 .mobile_button.is-open {
   color: white;
 }
-.mobile_button {
-  color: white;
-} /* or inherit from nav */
+/* or inherit from nav */
 .mobile_button i {
   font-size: 30px;
   position: absolute;
@@ -437,12 +445,19 @@ a.active hr {
   visibility: hidden;
   pointer-events: none;
   transform: translateX(100%);
-  transition: transform 600ms cubic-bezier(0.76, 0, 0.24, 1);
+  transition:
+    transform 600ms cubic-bezier(0.76, 0, 0.24, 1),
+    visibility 0s linear 600ms;
 }
 /* open state */
 
 .mobile-menu.is-open {
+  visibility: visible;
+  pointer-events: auto;
   transform: translateX(0);
+  transition:
+    transform 600ms cubic-bezier(0.76, 0, 0.24, 1),
+    visibility 0s linear 0s;
 }
 
 .mobile-menu__ring {
@@ -482,6 +497,16 @@ a.active hr {
   color: white;
   transition: all 0.3s ease;
   line-height: 1;
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.mobile-menu.is-open .mobile-menu__link {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .mobile-menu__link:hover {
@@ -638,6 +663,10 @@ a.active hr {
   display: none;
 }
 
+.mobile-menu__linkWrap {
+  overflow: hidden;
+}
+
 @media (min-width: 1024px) {
   .desktop_links {
     display: flex;
@@ -675,11 +704,18 @@ a.active hr {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition:
+      background-color 500ms ease,
+      color 500ms ease;
   }
   .settings_button i {
     font-size: 16px;
   }
 
+  .navigation.is-dark-section .settings_button {
+    background: #f4f4f5;
+    color: #09090b;
+  }
   .solar_button {
     border: none;
     border-radius: 999px;
@@ -691,6 +727,14 @@ a.active hr {
     text-transform: uppercase;
     letter-spacing: 0.2em;
     cursor: pointer;
+    transition:
+      background-color 500ms ease,
+      color 500ms ease;
+  }
+
+  .navigation.is-dark-section .solar_button {
+    background: #09090b;
+    color: white;
   }
 
   .mobile_button {
@@ -703,6 +747,27 @@ a.active hr {
     pointer-events: none !important;
     transform: translateX(100%) !important;
   }
+}
+
+/* NAVIGATIO ANIMATIONS */
+.mobile-menu.is-open .mobile-menu__linkWrap:nth-child(1) .mobile-menu__link {
+  transition-delay: 300ms;
+}
+
+.mobile-menu.is-open .mobile-menu__linkWrap:nth-child(2) .mobile-menu__link {
+  transition-delay: 400ms;
+}
+
+.mobile-menu.is-open .mobile-menu__linkWrap:nth-child(3) .mobile-menu__link {
+  transition-delay: 500ms;
+}
+
+.mobile-menu.is-open .mobile-menu__linkWrap:nth-child(4) .mobile-menu__link {
+  transition-delay: 600ms;
+}
+
+.mobile-menu.is-open .mobile-menu__linkWrap:nth-child(5) .mobile-menu__link {
+  transition-delay: 700ms;
 }
 /* hero section */
 
