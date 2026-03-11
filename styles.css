@@ -1473,6 +1473,33 @@ a.active hr {
   background-color: #18181b;
 }
 
+@media (min-width: 640px) {
+  .services-section__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .services-section {
+    padding-inline: 48px;
+  }
+
+  .services-section__heading {
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .services-section__grid {
+    gap: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-section {
+    padding-block: 160px;
+  }
+}
+
 /* PRODUCT SHOWCASE */
 .product-showcase {
   background-color: white;
