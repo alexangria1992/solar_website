@@ -2115,6 +2115,11 @@ a.active hr {
   cursor: pointer;
   color: #18181b;
 }
+
+.more-section__slider-button:hover {
+  background-color: #fafafa;
+}
+
 .more-section__slider-dots {
   display: flex;
   gap: 0.5rem;
@@ -2170,6 +2175,21 @@ a.active hr {
   background-color: #18181b;
 }
 
+@media (min-width: 768px) {
+  .more-section {
+    padding-inline: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .more-section {
+    padding-block: 160px;
+  }
+
+  .more-section__container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 .testimonials {
   background-color: #fafafa;
   padding: 6rem 0;
