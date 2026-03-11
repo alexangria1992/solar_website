@@ -329,10 +329,11 @@ function getSpecIconClass(iconName) {
 
 function createSpecItem(spec) {
   const item = document.createElement("div");
-  item.className = "product-showcase__spec-item";
+  item.className =
+    "product-showcase__spec-item product-showcase__spec-item--right";
 
   const topRow = document.createElement("div");
-  topRow.className = "product-showcase__spec-top";
+  topRow.className = "product-showcase__spec-top transition-colors";
 
   const icon = document.createElement("i");
   icon.className = getSpecIconClass(spec.icon);
