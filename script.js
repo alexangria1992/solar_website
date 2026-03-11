@@ -1,26 +1,4 @@
 const chartData = [40, 60, 30, 80, 50, 90, 45, 70, 85, 40, 60, 100];
-const menu = document.getElementById("mobileMenu");
-const btn = document.getElementById("mobileButton");
-const closeBtn = document.getElementById("menuClose");
-const avatarGroup = document.getElementById("avatarGroup");
-const specsLeft = document.getElementById("specsLeft");
-const specsRight = document.getElementById("specsRight");
-const guideCircles = document.getElementById("guideCircles");
-//Chart Elements
-const chartBars = document.getElementById("chartBars");
-const chartValue = document.getElementById("chartValue");
-// More Section
-const previewImages = [2, 3];
-const sliderDotCount = 4;
-const activeDotIndex = 2;
-const previewGrid = document.getElementById("previewGrid");
-const moreSpecsGrid = document.getElementById("moreSpecsGrid");
-const sliderDots = document.getElementById("sliderDots");
-
-let hoveredBar = null;
-//Services Element
-const servicesGrid = document.getElementById("servicesGrid");
-// SERVICES DATA
 const services = [
   {
     title: "Monitor",
@@ -141,10 +119,38 @@ const socialLinks = [
   { name: "Twitter", iconClass: "fa-brands fa-twitter" },
   { name: "Youtube", iconClass: "fa-brands fa-youtube" },
 ];
+
+const menu = document.getElementById("mobileMenu");
+const btn = document.getElementById("mobileButton");
+const closeBtn = document.getElementById("menuClose");
+const avatarGroup = document.getElementById("avatarGroup");
+const specsLeft = document.getElementById("specsLeft");
+const specsRight = document.getElementById("specsRight");
+const guideCircles = document.getElementById("guideCircles");
+//Chart Elements
+const chartBars = document.getElementById("chartBars");
+const chartValue = document.getElementById("chartValue");
+// More Section
+const previewImages = [2, 3];
+const sliderDotCount = 4;
+const activeDotIndex = 2;
+const previewGrid = document.getElementById("previewGrid");
+const moreSpecsGrid = document.getElementById("moreSpecsGrid");
+const sliderDots = document.getElementById("sliderDots");
+
+const firstTrackElement = document.querySelector(".testimonials__track--first");
+const secondTrackElement = document.querySelector(
+  ".testimonials__track--second",
+);
+const thirdTrackElement = document.querySelector(".testimonials__track--third");
 const firstColumn = testimonials.slice(0, 3);
 const secondColumn = testimonials.slice(3, 6);
 const thirdColumn = testimonials.slice(6, 9);
-const firstTrackElement = document.querySelector(".testimonials__track--first");
+
+let hoveredBar = null;
+//Services Element
+const servicesGrid = document.getElementById("servicesGrid");
+// SERVICES DATA
 
 btn.addEventListener("click", () => {
   // 1) Toggle OPEN state on the BUTTON first (so icon swaps)
@@ -476,11 +482,15 @@ function createTestimonialCard(item) {
   return card;
 }
 
-if (firstTrackElement) {
+function renderTestimonialsColumn(trackElement, items) {
+  if (!trackElement) return;
+
+  trackElement.innerHTML = "";
+
   for (let i = 0; i < 2; i++) {
-    firstColumn.forEach((item) => {
+    items.forEach((item) => {
       const card = createTestimonialCard(item);
-      firstTrackElement.appendChild(card);
+      trackElement.appendChild(card);
     });
   }
 }
@@ -571,3 +581,6 @@ renderGuideCircles();
 renderSpecs();
 renderChartBars();
 renderServices();
+renderTestimonialsColumn(firstTrackElement, firstColumn);
+renderTestimonialsColumn(secondTrackElement, secondColumn);
+renderTestimonialsColumn(thirdTrackElement, thirdColumn);

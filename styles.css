@@ -2250,6 +2250,7 @@ a.active hr {
   justify-content: center;
   max-height: 43.75rem;
   overflow: hidden;
+  gap: 1.5rem;
 }
 
 .testimonials__column {
@@ -2320,11 +2321,44 @@ a.active hr {
   will-change: transform;
 }
 
+.testimonials__track--first {
+  animation-duration: 20s;
+}
+
+.testimonials__track--second {
+  animation-duration: 25s;
+}
+
+.testimonials__track--third {
+  animation-duration: 18s;
+}
+
 .testimonials__column {
   width: 100%;
   max-width: 22rem;
 }
 
+.testimonials__column--second,
+.testimonials__column--third {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .testimonials__column--second {
+    display: block;
+  }
+
+  .testimonials__title {
+    font-size: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonials__column--third {
+    display: block;
+    line-height: 1;
+  }
+}
 @keyframes testimonials-scroll {
   from {
     transform: translateY(0);
