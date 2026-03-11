@@ -11,7 +11,7 @@
     />
   </head>
   <body>
-    <!-- SERVICES SECTION -->
+    <!-- Navigation SECTION -->
 
     <div class="website_container">
       <nav class="navigation transition-colors">
@@ -23,7 +23,25 @@
             <span class="logo_text">Georeno</span>
             <sup class="copyright">©</sup>
           </div>
+          <div class="desktop_links">
+            <a href="#home" class="desktop_link">Home</a>
+            <a href="#about" class="desktop_link">About</a>
+            <a href="#technology" class="desktop_link">Technology</a>
+            <a href="#specs" class="desktop_link">Specs</a>
+            <a href="#reviews" class="desktop_link">Reviews</a>
+          </div>
           <div class="actions_container">
+            <div class="desktop_actions">
+              <button
+                class="settings_button"
+                type="button"
+                aria-label="Settings"
+              >
+                <i class="fa-solid fa-gear"></i>
+              </button>
+
+              <button class="solar_button" type="button">Get Solar</button>
+            </div>
             <button
               id="mobileButton"
               class="mobile_button"
@@ -398,7 +416,86 @@
             </div>
           </div>
         </section>
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+          <div class="testimonials__container">
+            <div class="testimonials__intro">
+              <div class="testimonials__badge">Testimonials</div>
+
+              <h2 class="testimonials__title">
+                Trusted by homeowners <br />
+                <span class="testimonials__title-muted">globally.</span>
+              </h2>
+
+              <p class="testimonials__description">
+                From intuitive design to powerful features, Goreno has become an
+                essential partner for sustainable living.
+              </p>
+            </div>
+
+            <div class="testimonials__marquee">
+              <div class="testimonials__column testimonials__column--first">
+                <div
+                  class="testimonials__track testimonials__track--first"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
+      <footer class="footer">
+        <div class="footer__container">
+          <div class="footer__top">
+            <div class="footer__cta">
+              <h2 class="footer__title">
+                Design your solar system or schedule a virtual consultation with
+                a
+                <span class="footer__title-muted">Goreno Advisor</span>
+                to learn more.
+              </h2>
+
+              <button class="footer__cta-button" type="button">
+                <span>Order now</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <div class="footer__socials">
+              <span class="footer__label">Follow us</span>
+              <div class="footer__social-list"></div>
+            </div>
+          </div>
+
+          <div class="footer__divider"></div>
+
+          <div class="footer__bottom">
+            <div class="footer__links"></div>
+
+            <div class="footer__newsletter">
+              <span class="footer__label">Newsletter</span>
+
+              <div class="footer__newsletter-form">
+                <input
+                  class="footer__input"
+                  type="email"
+                  placeholder="Email address"
+                />
+                <button class="footer__submit" type="button">Submit</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer__legal">
+            <p class="footer__copyright"></p>
+
+            <div class="footer__legal-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Legal</a>
+              <a href="#">Cookie Settings</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
 
     <script src="/script.js" defer></script>

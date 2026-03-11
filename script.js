@@ -16,6 +16,7 @@ const activeDotIndex = 2;
 const previewGrid = document.getElementById("previewGrid");
 const moreSpecsGrid = document.getElementById("moreSpecsGrid");
 const sliderDots = document.getElementById("sliderDots");
+
 let hoveredBar = null;
 //Services Element
 const servicesGrid = document.getElementById("servicesGrid");
@@ -70,6 +71,80 @@ const moreSpecs = [
   { label: "Inverter Dimensions", value: '26" x 16" x 6"' },
   { label: "Materials", value: '26" x 16" x 6"' },
 ];
+
+// Testimonials data
+const testimonials = [
+  {
+    text: "Switching to Goreno was the best decision for our home. The Powerwall integration is seamless and the design is stunning.",
+    imageSrc: "/assets/images/avatar-1.png",
+    name: "Jamie Rivera",
+    username: "@jamietechguru00",
+  },
+  {
+    text: "Our monthly energy costs have dropped by 80%. The real-time monitoring makes managing our consumption addictive.",
+    imageSrc: "/assets/images/avatar-2.png",
+    name: "Josh Smith",
+    username: "@jjsmith",
+  },
+  {
+    text: "The installation process was professional and the aesthetic of the panels actually adds value to our modern roof.",
+    imageSrc: "/assets/images/avatar-3.png",
+    name: "Morgan Lee",
+    username: "@morganleewhiz",
+  },
+  {
+    text: "Finally, a solar company that cares about design as much as efficiency. It's the Apple of energy.",
+    imageSrc: "/assets/images/avatar-4.png",
+    name: "Casey Jordan",
+    username: "@caseyj",
+  },
+  {
+    text: "Customer support helped me optimize my AI Energy Mode, and now my house runs itself during peak hours.",
+    imageSrc: "/assets/images/avatar-5.png",
+    name: "Taylor Kim",
+    username: "@taylorkimm",
+  },
+  {
+    text: "The most reliable backup system I've ever used. We had a neighborhood outage and didn't even notice.",
+    imageSrc: "/assets/images/avatar-6.png",
+    name: "Riley Smith",
+    username: "@rileysmith1",
+  },
+  {
+    text: "Clean energy shouldn't look industrial. Goreno proved that it can be a beautiful part of home architecture.",
+    imageSrc: "/assets//images/avatar-7.png",
+    name: "Jordan Patels",
+    username: "@jpatelsdesign",
+  },
+  {
+    text: "Assigning energy priorities in the app is so intuitive. We prioritize our EV charging overnight effortlessly.",
+    imageSrc: "/assets//images/avatar-8.png",
+    name: "Sam Dawson",
+    username: "@dawsontechtips",
+  },
+  {
+    text: "Investment-grade hardware with a software experience that is lightyears ahead of the competition.",
+    imageSrc: "/assets//images/avatar-9.png",
+    name: "Casey Harper",
+    username: "@casey09",
+  },
+];
+const footerLinks = {
+  Company: ["About us", "Career", "Contact"],
+  Product: ["Solar", "Vehicle Recalls"],
+  Resources: ["News", "Press"],
+};
+
+const socialLinks = [
+  { name: "Instagram", iconClass: "fa-brands fa-instagram" },
+  { name: "Facebook", iconClass: "fa-brands fa-facebook-f" },
+  { name: "Twitter", iconClass: "fa-brands fa-twitter" },
+  { name: "Youtube", iconClass: "fa-brands fa-youtube" },
+];
+const firstColumn = testimonials.slice(0, 3);
+const secondColumn = testimonials.slice(3, 6);
+const thirdColumn = testimonials.slice(6, 9);
+const firstTrackElement = document.querySelector(".testimonials__track--first");
 
 btn.addEventListener("click", () => {
   // 1) Toggle OPEN state on the BUTTON first (so icon swaps)
@@ -360,6 +435,134 @@ function renderSliderDots() {
     sliderDots.appendChild(dotEl);
   });
 }
+
+function createTestimonialCard(item) {
+  const card = document.createElement("article");
+  card.className = "testimonial-card";
+
+  const text = document.createElement("div");
+  text.className = "testimonial-card__text";
+  text.textContent = `"${item.text}"`;
+
+  const footer = document.createElement("div");
+  footer.className = "testimonial-card__footer";
+
+  const image = document.createElement("img");
+  image.className = "testimonial-card__image";
+  image.src = item.imageSrc;
+  image.alt = item.name;
+
+  const meta = document.createElement("div");
+  meta.className = "testimonial-card__meta";
+
+  const name = document.createElement("div");
+  name.className = "testimonial-card__name";
+  name.textContent = item.name;
+
+  const username = document.createElement("div");
+  username.className = "testimonial-card__username";
+  username.textContent = item.username;
+
+  meta.appendChild(name);
+  meta.appendChild(username);
+
+  footer.appendChild(image);
+  footer.appendChild(meta);
+
+  card.appendChild(text);
+  card.appendChild(footer);
+
+  return card;
+}
+
+if (firstTrackElement) {
+  for (let i = 0; i < 2; i++) {
+    firstColumn.forEach((item) => {
+      const card = createTestimonialCard(item);
+      firstTrackElement.appendChild(card);
+    });
+  }
+}
+
+function createSocialButton(item) {
+  const button = document.createElement("button");
+  button.className = "footer__social-button";
+  button.type = "button";
+
+  const icon = document.createElement("i");
+  icon.className = item.iconClass;
+
+  const text = document.createElement("span");
+  text.textContent = item.name;
+
+  button.appendChild(icon);
+  button.appendChild(text);
+
+  return button;
+}
+
+function renderFooterSocials() {
+  const socialList = document.querySelector(".footer__social-list");
+
+  if (!socialList) return;
+
+  socialLinks.forEach((item) => {
+    const button = createSocialButton(item);
+    socialList.appendChild(button);
+  });
+}
+
+function createFooterLinkGroup(category, links) {
+  const group = document.createElement("div");
+  group.className = "footer__link-group";
+
+  const title = document.createElement("span");
+  title.className = "footer__label";
+  title.textContent = category;
+
+  const list = document.createElement("ul");
+  list.className = "footer__link-list";
+
+  links.forEach((linkText) => {
+    const item = document.createElement("li");
+
+    const link = document.createElement("a");
+    link.className = "footer__link";
+    link.href = "#";
+    link.textContent = linkText;
+
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+
+  group.appendChild(title);
+  group.appendChild(list);
+
+  return group;
+}
+
+function renderFooterLinks() {
+  const linksContainer = document.querySelector(".footer__links");
+
+  if (!linksContainer) return;
+
+  Object.entries(footerLinks).forEach(([category, links]) => {
+    const group = createFooterLinkGroup(category, links);
+    linksContainer.appendChild(group);
+  });
+}
+
+function renderFooterCopyright() {
+  const copyright = document.querySelector(".footer__copyright");
+
+  if (!copyright) return;
+
+  const currentYear = new Date().getFullYear();
+  copyright.textContent = `© ${currentYear} Copyright Goreno Inc.`;
+}
+renderFooterCopyright();
+renderFooterLinks();
+renderFooterSocials();
 renderPreviewimages();
 renderMoreSpecs();
 renderSliderDots();
