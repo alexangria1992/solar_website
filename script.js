@@ -150,11 +150,37 @@ const thirdTrackElement = document.querySelector(".testimonials__track--third");
 const firstColumn = testimonials.slice(0, 3);
 const secondColumn = testimonials.slice(3, 6);
 const thirdColumn = testimonials.slice(6, 9);
+const heroAnimatedItems = document.querySelectorAll(".hero-animate");
+const aboutHeading = document.querySelector(".about-reveal--heading");
+const aboutGrid = document.getElementById("aboutGrid");
 
 let hoveredBar = null;
+let chartAnimated = false;
 //Services Element
 const servicesGrid = document.getElementById("servicesGrid");
 
+window.addEventListener("load", () => {
+  heroAnimatedItems.forEach((item) => {
+    item.classList.add("is-visible");
+  });
+});
+
+const revealObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  },
+  {
+    threshold: 0.2,
+    rootMargin: "0px 0px -100px 0px",
+  },
+);
+
+if (aboutHeading) revealObserver.observe(aboutHeading);
+if (aboutGrid) revealObserver.observe(aboutGrid);
 function openMenu() {
   btn.classList.add("is-open");
   menu.classList.add("is-open");
@@ -226,7 +252,11 @@ window.addEventListener("load", updateNavTheme);
 
 function updateChartValue() {
   const value = hoveredBar !== null ? chartData[hoveredBar] : 72;
+  chartValue.classList.remove("is-changing");
+  void chartValue.offsetWidth;
+
   chartValue.textContent = `${value}%`;
+  chartValue.classList.add("is-changing");
 }
 
 function createBarColumn(height, i) {
@@ -262,11 +292,61 @@ function renderChartBars() {
   chartBars.innerHTML = "";
 
   chartData.forEach((height, i) => {
-    const column = createBarColumn(height, i);
+    const column = document.createElement("div");
+    column.className = "about-section__chart-bar-column";
+
+    const bar = document.createElement("div");
+    bar.className = "about-section__chart-bar transition-colors";
+    bar.dataset.index = i;
+    bar.dataset.height = height;
+    bar.style.height = "0%";
+
+    column.addEventListener("mouseenter", () => {
+      hoveredBar = i;
+      updateChartValue();
+      updateBarStyles();
+    });
+
+    column.addEventListener("mouseleave", () => {
+      hoveredBar = null;
+      updateChartValue();
+      updateBarStyles();
+    });
+    column.appendChild(bar);
     chartBars.appendChild(column);
   });
 }
 
+function updateBarStyles() {
+  const bars = document.querySelectorAll(".about-section__chart-bar");
+  bars.forEach((bar, i) => {
+    bar.classList.remove("chart-card__bar--active", "chart-card__bar--lime");
+
+    if (hoveredBar === i) {
+      bar.classList.add("chart-card__bar--active");
+    } else if (i > 8) {
+      bar.classList.add("chart-card__bar--lime");
+    }
+  });
+}
+
+function animateChartBars() {
+  if (chartAnimated) return;
+
+  const bars = document.querySelectorAll(".about-section__chart-bar");
+
+  bars.forEach((bar, i) => {
+    const targetHeight = bar.dataset.height;
+
+    bar.style.transitionDelay = `${i * 50}ms`;
+
+    requestAnimationFrame(() => {
+      bar.style.height = `${targetHeight}%`;
+    });
+  });
+
+  chartAnimated = true;
+}
 // SERVICES
 function getServiceIconClass(iconName) {
   switch (iconName) {
@@ -609,6 +689,9 @@ renderSliderDots();
 renderGuideCircles();
 renderSpecs();
 renderChartBars();
+updateChartValue();
+updateBarStyles();
+animateChartBars();
 renderServices();
 renderTestimonialsColumn(firstTrackElement, firstColumn);
 renderTestimonialsColumn(secondTrackElement, secondColumn);
