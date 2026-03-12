@@ -155,6 +155,8 @@ const aboutHeading = document.querySelector(".about-reveal--heading");
 const aboutGrid = document.getElementById("aboutGrid");
 const productRevealItems = document.querySelectorAll(".product-reveal");
 const productStagger = document.getElementById("productStagger");
+const servicesRevealItems = document.querySelectorAll(".services-reveal");
+const servicesStagger = document.querySelector(".services-stagger");
 
 let hoveredBar = null;
 let chartAnimated = false;
@@ -204,6 +206,28 @@ productRevealItems.forEach((item) => {
 
 if (productStagger) {
   productObserver.observe(productStagger);
+}
+
+const servicesObserver = new IntersectionObserver(
+  (entries, oberserver) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      oberserver.unobserve(entry.target);
+    });
+  },
+  {
+    threshold: 0.2,
+    rootMargin: "0px 0px -80px 0px",
+  },
+);
+
+servicesRevealItems.forEach((item) => {
+  servicesObserver.observe(item);
+});
+
+if (servicesStagger) {
+  servicesObserver.observe(servicesStagger);
 }
 function openMenu() {
   btn.classList.add("is-open");
@@ -387,7 +411,7 @@ function getServiceIconClass(iconName) {
 
 function createServiceCard(service, index) {
   const card = document.createElement("div");
-  card.className = "services-section__card";
+  card.className = "services-section__card services-stagger-item";
 
   const imageContainer = document.createElement("div");
   imageContainer.className = "services-section__image-container";
