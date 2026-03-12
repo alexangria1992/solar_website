@@ -2528,6 +2528,11 @@ a.active hr {
   overflow: hidden;
   position: relative;
   background-color: #f4f4f5;
+  transition: transform 250ms ease;
+}
+
+.more-section__preview-card:hover {
+  transform: translateY(-5px);
 }
 
 .more-section__preview-image {
@@ -2571,6 +2576,61 @@ a.active hr {
   background-color: #18181b;
 }
 
+.more-section__main-card-button {
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    transform 180ms ease;
+}
+
+.more-section__main-card-button:hover {
+  background: white;
+  color: black;
+}
+
+.more-section__main-card-button:active {
+  transform: scale(0.96);
+}
+
+.more-section__features-card {
+  border-radius: 2.5rem;
+  background-color: #fafafa;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: background-color 250ms ease;
+}
+
+.more-section__features-card:hover {
+  background-color: #f4f4f5;
+}
+
+.more-section__features-button {
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 999px;
+  padding-inline: 1.5rem;
+  padding-block: 0.75rem;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: transform 180ms ease;
+}
+
+.more-section__features-card:hover .more-section__features-button {
+  transform: scale(1.05);
+}
+
+.more-section__features-button:active {
+  transform: scale(0.95);
+}
+
 @media (min-width: 768px) {
   .more-section {
     padding-inline: 48px;
@@ -2585,6 +2645,71 @@ a.active hr {
   .more-section__container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* MORE ANIMATIONS */
+.more-reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.more-reveal--badge {
+  transform: translateY(10px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.more-reveal--description {
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;
+}
+
+.more-reveal--preview {
+  transform: translateY(14px);
+  transition:
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) 260ms,
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1) 260ms;
+}
+.more-reveal--heading {
+  transform: translateY(20px);
+  transition:
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) 100ms,
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1) 100ms;
+}
+
+.more-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.more-stagger-item {
+  opacity: 0;
+  transform: scale(0.98);
+  will-change: transform, opacity;
+}
+
+.more-stagger.is-visible .more-stagger-item:nth-child(1) {
+  transition-delay: 280ms;
+}
+
+.more-stagger.is-visible .more-stagger-item:nth-child(2) {
+  transition-delay: 380ms;
+}
+
+.more-stagger.is-visible .more-stagger-item:nth-child(3) {
+  transition-delay: 480ms;
+}
+
+.more-stagger.is-visible .more-stagger-item:nth-child(4) {
+  transition-delay: 580ms;
+}
+
+.more-stagger.is-visible .more-stagger-item {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .testimonials {
   background-color: #fafafa;

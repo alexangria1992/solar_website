@@ -157,6 +157,8 @@ const productRevealItems = document.querySelectorAll(".product-reveal");
 const productStagger = document.getElementById("productStagger");
 const servicesRevealItems = document.querySelectorAll(".services-reveal");
 const servicesStagger = document.querySelector(".services-stagger");
+const moreRevealItems = document.querySelectorAll(".more-reveal");
+const moreStagger = document.getElementById("moreStagger");
 
 let hoveredBar = null;
 let chartAnimated = false;
@@ -228,6 +230,29 @@ servicesRevealItems.forEach((item) => {
 
 if (servicesStagger) {
   servicesObserver.observe(servicesStagger);
+}
+
+const moreObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  },
+  {
+    threshold: 0.2,
+    rootMargin: "0px 0px -80px 0px",
+  },
+);
+
+moreRevealItems.forEach((item) => {
+  moreObserver.observe(item);
+});
+
+if (moreStagger) {
+  moreObserver.observe(moreStagger);
 }
 function openMenu() {
   btn.classList.add("is-open");
