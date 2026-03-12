@@ -153,6 +153,8 @@ const thirdColumn = testimonials.slice(6, 9);
 const heroAnimatedItems = document.querySelectorAll(".hero-animate");
 const aboutHeading = document.querySelector(".about-reveal--heading");
 const aboutGrid = document.getElementById("aboutGrid");
+const productRevealItems = document.querySelectorAll(".product-reveal");
+const productStagger = document.getElementById("productStagger");
 
 let hoveredBar = null;
 let chartAnimated = false;
@@ -181,6 +183,28 @@ const revealObserver = new IntersectionObserver(
 
 if (aboutHeading) revealObserver.observe(aboutHeading);
 if (aboutGrid) revealObserver.observe(aboutGrid);
+
+const productObserver = new IntersectionObserver(
+  (entries, oberserver) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      oberserver.unobserve(entry.target);
+    });
+  },
+  {
+    threshold: 0.2,
+    rootMargin: "0px 0px -80px 0px",
+  },
+);
+
+productRevealItems.forEach((item) => {
+  productObserver.observe(item);
+});
+
+if (productStagger) {
+  productObserver.observe(productStagger);
+}
 function openMenu() {
   btn.classList.add("is-open");
   menu.classList.add("is-open");
