@@ -159,6 +159,8 @@ const servicesRevealItems = document.querySelectorAll(".services-reveal");
 const servicesStagger = document.querySelector(".services-stagger");
 const moreRevealItems = document.querySelectorAll(".more-reveal");
 const moreStagger = document.getElementById("moreStagger");
+const footerRevealItems = document.querySelectorAll(".footer-reveal");
+const footerStagger = document.getElementById("footerStagger");
 
 let hoveredBar = null;
 let chartAnimated = false;
@@ -253,6 +255,29 @@ moreRevealItems.forEach((item) => {
 
 if (moreStagger) {
   moreObserver.observe(moreStagger);
+}
+
+const footerObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  },
+  {
+    threshold: 0.15,
+    rootMargin: "0px 0px -60px 0px",
+  },
+);
+
+footerRevealItems.forEach((item) => {
+  footerObserver.observe(item);
+});
+
+if (footerStagger) {
+  footerObserver.observe(footerStagger);
 }
 function openMenu() {
   btn.classList.add("is-open");
